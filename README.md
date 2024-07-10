@@ -4,15 +4,7 @@ This project is a Node.js Express backend with MongoDB, set up for handling API 
 
 ### Base Project Structure
 
-project-root/
-├── src/
-│ ├── server.js
-│ ├── app.js
-│ ├── swagger.js
-│ └── swaggeroutput.json
-├── package.json
-├── .env
-└── README.md
+![project folder structure](image.png)
 
 ### Features
 
