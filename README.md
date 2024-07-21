@@ -6,6 +6,7 @@ This project is a Node.js Express backend with MongoDB, set up for handling API 
 
 <!-- ![project folder structure](image.png) -->
 
+```
 codersden-attendance-backend-starter/
 ├── src
 │ ├── server.js
@@ -15,6 +16,7 @@ codersden-attendance-backend-starter/
 ├── package.json
 ├── .env
 └── README.md
+```
 
 ### Features
 
