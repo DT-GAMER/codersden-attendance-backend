@@ -4,7 +4,17 @@ This project is a Node.js Express backend with MongoDB, set up for handling API 
 
 ### Base Project Structure
 
-![project folder structure](image.png)
+<!-- ![project folder structure](image.png) -->
+
+codersden-attendance-backend-starter/
+├── src
+│ ├── server.js
+│ ├── app.js
+│ ├── swagger.js
+│ ├── swaggeroutput.json
+├── package.json
+├── .env
+└── README.md
 
 ### Features
 
