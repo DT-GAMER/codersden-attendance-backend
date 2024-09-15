@@ -1,23 +1,24 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const app = require(".");
+import app, { use, listen } from './index';
+import { PORT as _PORT, NODE_ENV } from './config/env';
+import { logEvent } from './utils/logger';
+//  we will import middlewares and other configurations we need to run the server
 
-dotenv.config();
 
-const PORT = process.env.PORT || 3000;
-const password = process.env.DB_URI;
-const DB_URI = `mongodb+srv://meet-attendance:${password}@node-tuts.fmgzprx.mongodb.net/cden-backend?retryWrites=true&w=majority&appName=node-tuts`;
-
-mongoose
-  .connect(DB_URI, {
-    tlsAllowInvalidCertificates: true,
-  })
-  .then(() => {
-    console.log("Connected to MongoDB");
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error("Database connection error:", err);
+use((err, _req, res) => {
+  const statusCode = err.statusCode || 500;
+  res.status(statusCode).json({
+    message: err.message || 'Internal Server Error',
+    error: process.env.NODE_ENV === 'development' ? err : {},
   });
+  logEvent(`Error: ${err.message}`, 'error');
+});
+
+//  we will listen to the port specified in the environment variables
+const PORT = _PORT || 3000;
+
+listen(PORT, () => {
+  logEvent(`Server is running in ${NODE_ENV} mode on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
+});
+
+export default app;
