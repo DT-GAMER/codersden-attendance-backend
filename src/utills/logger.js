@@ -9,7 +9,7 @@ if (!existsSync(logDirectory)) {
 }
 
 if (!existsSync(logFilePath)) {
-  writeFileSync(logFilePath, ''); // Create an empty app.log file
+  writeFileSync(logFilePath, '');
 }
 
 /**
