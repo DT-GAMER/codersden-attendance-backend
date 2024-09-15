@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import crypto from 'crypto';
 
 const pepper = process.env.PEPPER;
 
