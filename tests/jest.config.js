@@ -3,7 +3,7 @@ export const roots = ['<rootDir>/tests'];
 export const setupFilesAfterEnv = ['<rootDir>/setupTests.js'];
 export const testEnvironment = 'node';
 export const transform = {
-    '^.+\\.js$': 'babel-jest'
+    '^.+\\.jsx?$': 'babel-jest'
 };
 export const testMatch = [
     '**/tests/**/*.test.js'
