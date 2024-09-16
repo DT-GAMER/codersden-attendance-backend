@@ -1,13 +1,10 @@
 import { connect } from 'mongoose';
-import { logError, logEvent } from '../utils/logger';
-import { MONGO_URI } from './env';
-
+import { logError, logEvent } from '../utils/logger.js';
+import { MONGO_URI } from './env.js';
 
 const connectDB = async () => {
   try {
     await connect(MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
     });
     logEvent('Connected to MongoDB');
     console.log('MongoDB Connected');
@@ -17,5 +14,6 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
+
 
 export default connectDB;

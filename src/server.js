@@ -1,24 +1,17 @@
-import app, { use, listen } from './index';
-import { PORT as _PORT, NODE_ENV } from './config/env';
-import { logEvent } from './utils/logger';
-//  we will import middlewares and other configurations we need to run the server
+import app from './index.js';
+import { PORT as _PORT, NODE_ENV } from './config/env.js';
+import { logEvent } from './utils/logger.js';
+import { EventEmitter } from 'events';
+
+EventEmitter.defaultMaxListeners = 20;
 
 
-use((err, _req, res) => {
-  const statusCode = err.statusCode || 500;
-  res.status(statusCode).json({
-    message: err.message || 'Internal Server Error',
-    error: process.env.NODE_ENV === 'development' ? err : {},
-  });
-  logEvent(`Error: ${err.message}`, 'error');
-});
-
-//  we will listen to the port specified in the environment variables
 const PORT = _PORT || 3000;
 
-listen(PORT, () => {
-  logEvent(`Server is running in ${NODE_ENV} mode on port ${PORT}`);
-  console.log(`Server running on port ${PORT}`);
+app.listen(PORT, () => {
+  const url = `http://localhost:${PORT}`;
+  logEvent(`Server is running in ${NODE_ENV} mode on port ${PORT}. Access it at ${url}`);
+  console.log(`Server running on port ${PORT}. Access it at ${url}`);
 });
 
 export default app;
