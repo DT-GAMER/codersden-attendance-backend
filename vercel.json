@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "builds": [
+	{
+	  "src": "index.js",
+	  "use": "@vercel/node"
+	}
+  ],
+  "routes": [
+	{
+	  "src": "/(.*)",
+	  "dest": "/index.js"
+	}
+  ],
+  "env": {
+	"NODE_ENV": "@node_env",
+	"PORT": "@port",
+	"MONGO_URI": "@mongo_uri",
+	"JWT_SECRET": "@jwt_secret",
+	"TOKEN_EXPIRATION": "@token_expiration",
+	"SALT_ROUNDS": "@salt_rounds",
+	"PEPPER": "@pepper",
+	"RATE_LIMIT_WINDOW": "@rate_limit_window",
+	"RATE_LIMIT_MAX": "@rate_limit_max",
+	"CORS_WHITELIST": "@cors_whitelist",
+	"LOG_LEVEL": "@log_level",
+	"LOG_FILE": "@log_file",
+	"LOG_ERROR_FILE": "@log_error_file",
+	"LOG_MAX_SIZE": "@log_max_size",
+	"LOG_MAX_FILES": "@log_max_files",
+	"LOG_CONSOLE": "@log_console",
+	"LOG_FILE_ERROR": "@log_file_error",
+	"LOG_FILE_COMBINED": "@log_file_combined",
+	"LOG_DATE_PATTERN": "@log_date_pattern",
+	"LOG_ZIPPED_ARCHIVE": "@log_zipped_archive",
+	"LOG_UNZIPPED_ARCHIVE": "@log_unzipped_archive"
+  }
+}
