@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(corsMiddleware);
 
 // Rate limiter middleware
-app.use('/api/auth', rateLimiter);
+app.use('/api/v1', rateLimiter);
 
 // Connect to the database
 connectDB();
