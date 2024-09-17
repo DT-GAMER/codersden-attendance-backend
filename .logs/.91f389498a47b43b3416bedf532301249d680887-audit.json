@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/dt-gamer/codersden-attendance-backend/.logs/.91f389498a47b43b3416bedf532301249d680887-audit.json",
+    "files": [
+        {
+            "date": 1726589866688,
+            "name": "/home/dt-gamer/codersden-attendance-backend/.logs/error.log.2024-09-17",
+            "hash": "6fd0e50d643bea2df63cf85cdca9a5e2997fb238f72943fd78dd4188622f543f"
+        }
+    ],
+    "hashType": "sha256"
+}
