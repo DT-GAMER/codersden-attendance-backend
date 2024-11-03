@@ -1,0 +1,75 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=${MONGO_URI}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - JWT_SECRET=${JWT_SECRET}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - LOG_FILE=${LOG_FILE}
+      - LOG_ERROR_FILE=${LOG_ERROR_FILE}
+      - LOG_MAX_SIZE=${LOG_MAX_SIZE}
+      - LOG_MAX_FILES=${LOG_MAX_FILES}
+      - LOG_CONSOLE=${LOG_CONSOLE}
+      - LOG_FILE_ERROR=${LOG_FILE_ERROR}
+      - LOG_FILE_COMBINED=${LOG_FILE_COMBINED}
+      - LOG_DATE_PATTERN=${LOG_DATE_PATTERN}
+      - LOG_ZIPPED_ARCHIVE=${LOG_ZIPPED_ARCHIVE}
+      - LOG_UNZIPPED_ARCHIVE=${LOG_UNZIPPED_ARCHIVE}
+      - CORS_WHITELIST=${CORS_WHITELIST}
+    depends_on:
+      - mongo
+      - redis
+    volumes:
+      - ./logs:/usr/src/app/logs
+    networks:
+      - coder-net
+
+  mongo:
+    image: mongo:5
+    container_name: coder-den-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - coder-net
+
+  redis:
+    image: redis:6
+    container_name: coder-den-redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - coder-net
+      
+  kue-dashboard:
+    build:
+      context: ./kue-dashboard
+      dockerfile: Dockerfile
+    container_name: coder-den-kue-dashboard
+    ports:
+      - "3050:3050"
+    environment:
+      KUE_REDIS_HOST: ${REDIS_HOST}
+      KUE_REDIS_PORT: ${REDIS_PORT}
+    depends_on:
+      - redis
+    networks:
+      - coder-net
+
+
+networks:
+  coder-net:
+
+volumes:
+  mongo-data:
+  redis-data:

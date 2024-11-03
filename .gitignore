@@ -1,6 +1,6 @@
-/node_modules
+node_modules/
 .env
-
+logs/
 # Log files
 combined.log.2024-09-16
 error.log.2024-09-16
@@ -8,3 +8,4 @@ error.log.2024-09-16
 # Audit log files
 .5e86d15da0d4d07bcf038e22b6a298147d86f245-audit.json
 .8ae41a53cfcc10ffd341e2d509c7cb9a160e7500-audit.json
+combined.log.*

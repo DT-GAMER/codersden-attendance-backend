@@ -1,5 +1,7 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
 
+const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development';
+dotenv.config({ path: envFile });
 
 export const NODE_ENV = process.env.NODE_ENV 
 export const PORT = process.env.PORT 
@@ -22,3 +24,5 @@ export const LOG_FILE_COMBINED = process.env.LOG_FILE_COMBINED
 export const LOG_DATE_PATTERN = process.env.LOG_DATE_PATTERN
 export const LOG_ZIPPED_ARCHIVE = process.env.LOG_ZIPPED_ARCHIVE
 export const LOG_UNZIPPED_ARCHIVE = process.env.LOG_UNZIPPED_ARCHIVE
+export const REDIS_HOST = process.env.REDIS_HOST
+export const REDIS_PORT = process.env.REDIS_PORT
